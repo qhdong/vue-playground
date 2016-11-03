@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my input</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+        <my-input
+            label="Message"
+            v-model="message"
+        ></my-input>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('my-input', {
+            template: '\
+                <div class="form-group">\
+                    <label :for="randomID">{{ label }}:</label>\
+                    <input :id="randomID" :value="value" @input="onInput">\
+                </div>\
+                ',
+            props: ['value', 'label'],
+            data: function () {
+                return {
+                    randomID: 'input-' + Math.random()
+                }
+            },
+            methods: {
+                onInput: function (event) {
+                    this.$emit('input', event.target.value)
+                }
+            }
+        });
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello'
+            }
+        })
+    </script>
+</body>
+</html>

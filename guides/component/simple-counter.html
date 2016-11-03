@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Counter</title>
+</head>
+<body>
+    <div id="app">
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <input type="text" v-model="parentMsg">
+        <child :message="parentMsg"></child>
+        <student :id="140740" name="Dong Qihong" gender="male" tel="18351951918"></student>
+        <br>
+        <button-counter @increment="incrementTotal"></button-counter>
+        <button-counter @increment="incrementTotal"></button-counter>
+        <p>{{total}}</p>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('child', {
+            template: '<span>{{ message }}</span>',
+            props: ['message']
+        });
+
+        Vue.component('simple-counter', {
+            template: '<button @click="counter += 1">{{counter}}</button>',
+            data: function () {
+                return {
+                    counter: 0
+                };
+            }
+        });
+
+        Vue.component('button-counter', {
+            template: '<button @click="increment">{{counter}}</button>',
+            data: function () {
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                increment: function () {
+                    this.counter += 1;
+                    this.$emit('increment');
+                }
+            }
+        });
+
+        Vue.component('student', {
+            props: {
+                id: {
+                    type: Number,
+                    required: true
+                },
+                name: {
+                    type: String,
+                    required: true
+                },
+                gender: {
+                    type: String,
+                    required: true
+                },
+                tel: {
+                    type: [String, Number]
+                },
+                zip: {
+                    type: String,
+                    default: '210000'
+                }
+            },
+            template: '\
+            <p>ID: {{id}}, name: {{name}}, gender: {{gender}}, tel: {{tel}}, zip: {{zip}}</p>'
+        });
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                parentMsg: '',
+                total: 0
+            },
+            methods: {
+                incrementTotal: function () {
+                    this.total += 1;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

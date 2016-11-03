@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Github Commits</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <label for="org">org: </label>
+        <input type="text" id="org" v-model="org">
+        <label for="repo">repo: </label>
+        <input type="text" id="repo" v-model="repo">
+        <label for="sha">sha: </label>
+        <input type="text" id="sha" v-model="sha">
+        <label for="perPage">per-page: </label>
+        <input type="number" id="perPage" v-model="perPage">
+        <github-commit :org="org" :repo="repo" :sha="sha" :per-page="perPage"></github-commit>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

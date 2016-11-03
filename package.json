@@ -1,0 +1,8 @@
+{
+  "name": "vue-playground",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "vue": "^2.0.3"
+  }
+}
