@@ -1,0 +1,19 @@
+.item {
+    cursor: pointer;
+    user-select: none;
+}
+
+ul {
+    padding-left: 1em;
+    line-height: 1.5em;
+    list-style-type: dot;
+}
+
+body {
+    font-family: Menlo, Consolas, monospace;
+    color: #444;
+}
+
+.bold {
+    font-weight: bold;
+}
